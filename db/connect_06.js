@@ -1,6 +1,6 @@
-import mongoose from mongoose;
+import mongoose from 'mongoose';
 
-const connectDB_06=()=>{
+const connectDB_06=(url)=>{
     return mongoose.connect(url);
 }
 

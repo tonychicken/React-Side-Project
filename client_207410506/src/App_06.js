@@ -1,24 +1,21 @@
-import Landing_06 from './pages/Landing_06';
-import styled from 'styled-components';
 
-const Button = styled.button`
-  background: red;
-  color: White;
-  font-size: irem;
-`;
-const Button2 = styled.button`
-  background: blue;
-  color: White;
-  font-size: irem;
-`;
+import { BrowserRouter,Routes,Route,Link } from 'react-router-dom';
+import {Landing_06,Dashboard_06,Register_06, Error_06} from './pages';
+
+
+
+
 
 function App_06() {
   return (
-    <div>
-      <Button>Click me</Button>
-      <Button2>Click me</Button2>
-      <Landing_06 />
-    </div>
+    <BrowserRouter>
+    <Routes>
+        <Route path="/" element={<Dashboard_06/>}  />
+        <Route path="/landing" element={<Landing_06/>}  />
+        <Route path="/register" element={<Register_06/>}  />
+        <Route path="/*" element={<Error_06/>}  />
+    </Routes>
+    </BrowserRouter>
   );
 }
 

@@ -20,7 +20,7 @@ const Landing_06 = () => {
             voluptatibus illo? Quasi voluptatem culpa, ipsa tempora, tempore
             fuga commodi, eligendi dolores delectus dolor ad fugit.
           </p>
-          <a href='#' className='btn btn-hero'>
+          <a href='/register' className='btn btn-hero'>
             Login/Register
           </a>
         </div>
