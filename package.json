@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "test": "node server_06.js",
-    "dev": "node server_06.js"
+    "dev": "nodemon server_06.js"
   },
   "repository": {
     "type": "git",
@@ -20,11 +20,11 @@
   },
   "homepage": "https://github.com/tonychicken/1102-wp2-mern-207410506#readme",
   "dependencies": {
-    "dotenv": "^16.0.0",
-    "express": "^4.17.3",
-    "mongoose": "^6.2.11"
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1",
+    "mongoose": "^6.3.6"
   },
   "devDependencies": {
-    "nodemon": "^2.0.15"
+    "nodemon": "^2.0.16"
   }
 }
