@@ -41,7 +41,7 @@ export const Register_06 = () => {
         <h3>{values.isMember ? 'Login' : 'Register'}</h3>
         {showAlert && <Alert_06 />}
 
-        {/*name input*/}
+        {/*name input.*/}
         {!values.isMember && (
           <FormRow_06
             type="text"
