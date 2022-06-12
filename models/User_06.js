@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 import validator from "validator";//npm套件，主要功能為
-import bcrypt from "bcryptjs";
+import bcrypt from "bcryptjs";//注意必須是此路徑，不可使用自動填入的
 
 const UserSchema_06 = new mongoose.Schema({
     name: {
@@ -13,34 +13,37 @@ const UserSchema_06 = new mongoose.Schema({
     email: {
         type: String,
         requires: [true, 'please prvide email'],
-        validate:{
-          validator:validator.isEmail,
-          message:"please provide vaild email",  
+        validate: {
+            validator: validator.isEmail,
+            message: "please provide vaild email",
         },
-        unique:true,
+        unique: true,
     },
-    password : {
+    password: {
         type: String,
         requires: [true, 'please procide passeord'],
         minlength: 6,
-        select:false,
+        select: false,
     },
-    lastName : {
+    lastName: {
         type: String,
-        trim:true,
+        trim: true,
         maxlength: 30,
-        default:'lastName',
+        default: 'lastName',
     },
-    location : {
+    location: {
         type: String,
-        trim:true,
+        trim: true,
         maxlength: 30,
-        default:'my city',
+        default: 'my city',
     },
 });
 
-UserSchema_06.pre('save',async function(){
-    const salt=bcrypt.genSalt(10);//Salt產生亂碼，預設跑10次(足夠難破解)
+UserSchema_06.pre('save', async function () {
+    // console.log('password',this.password);
+    const salt = await bcrypt.genSalt(10);//Salt產生亂碼，預設跑10次(足夠難破解)
+    this.password = await bcrypt.hash(this.
+    password, salt)
 });
 
 export default mongoose.model('User_06', UserSchema_06);
