@@ -25,8 +25,8 @@ app.get('/', (req, res) => {
 
 app.use('/api/v1/auth_06',authRoutes_06);
 
-app.use(notFoundMiddleware_06);
-app.use(errorHandlerMiddleware_06)
+app.use( notFoundMiddleware_06);
+app.use( errorHandlerMiddleware_06);
 
 
 
