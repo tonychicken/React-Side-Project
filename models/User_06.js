@@ -1,4 +1,6 @@
 import mongoose from "mongoose";
+import validator from "validator";//npm套件，主要功能為
+import bcrypt from "bcryptjs";
 
 const UserSchema_06 = new mongoose.Schema({
     name: {
@@ -11,6 +13,10 @@ const UserSchema_06 = new mongoose.Schema({
     email: {
         type: String,
         requires: [true, 'please prvide email'],
+        validate:{
+          validator:validator.isEmail,
+          message:"please provide vaild email",  
+        },
         unique:true,
     },
     password : {
@@ -29,9 +35,12 @@ const UserSchema_06 = new mongoose.Schema({
         type: String,
         trim:true,
         maxlength: 30,
-        default:'my cityx   ',
+        default:'my city',
     },
 });
 
+UserSchema_06.pre('save',async function(){
+    const salt=bcrypt.genSalt(10);//Salt產生亂碼，預設跑10次(足夠難破解)
+});
 
 export default mongoose.model('User_06', UserSchema_06);
