@@ -3,8 +3,10 @@ import User_06 from "../models/User_06.js";
 const register_06 = async (req, res,next) => { //next 往後端送
     try {
         console.log('body', req.body);
-        const user = await User_06.create(req.body);
-        res.status(201).json({ user });
+        const user = await User_06.create(req.body);//寫進mongodb
+        const token=user.createJWT();//使用model的方法createJWT
+        
+        res.status(201).json({ user,token });
         // res.send('register user -- Tony Zhan , 207410506');
 
     } catch (err) {

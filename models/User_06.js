@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 import validator from "validator";//npm套件，主要功能為
 import bcrypt from "bcryptjs";//注意必須是此路徑，不可使用自動填入的
+import  Jwt  from "jsonwebtoken";
 
 const UserSchema_06 = new mongoose.Schema({
     name: {
@@ -45,5 +46,10 @@ UserSchema_06.pre('save', async function () {
     this.password = await bcrypt.hash(this.
     password, salt)
 });
+
+UserSchema_06.methods.createJWT=function(){
+    console.log("this",this);//this這邊表示輸入的全部的資料
+    return Jwt.sign({userId:this._id},process.env.JWT_SECRET,{expiresIn:process.env.JWT_LIFETIME});//jwt.sign 可創token
+};
 
 export default mongoose.model('User_06', UserSchema_06);
