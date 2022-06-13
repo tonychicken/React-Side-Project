@@ -1,9 +1,11 @@
 import express from "express";
 const app = express();
 
-import dotenv from 'dotenv';
+import dotenv from 'dotenv';//process.env.XXXXXXXXX
 dotenv.config();
 
+
+import "express-async-errors"
 //DB && authenticateUser
 import connectDB_06 from './db/connect_06.js'
 
