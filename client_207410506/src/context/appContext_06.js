@@ -2,7 +2,7 @@
 import React,{useReducer,useContext} from 'react';
 import reducer_06 from './reducer_06';
 import { DISPLAY_ALERT,CLEAR_ALERT } from './action_06';
-
+import axios from 'axios';
 
 const initialState = {
     isLoading:false,
@@ -27,11 +27,15 @@ const AppProvider_06=({children})=>{
         setTimeout ( () => {  
             dispatch({type: CLEAR_ALERT});  
         },3000);
+    }
 
+    const registerUser = async({currentUser,endPoint,alertText}) => {
+        const { data } = await axios.post(`/api/v1/auth_06/${endPoint}`);
+        console.log("12345678",data);
     }
 
     return (
-        <AppContext_06.Provider value={{ ...state,displayAlert,clearAlert} }>
+        <AppContext_06.Provider value={{ ...state,displayAlert,clearAlert,registerUser} }>
             {children}
         </AppContext_06.Provider>
     )

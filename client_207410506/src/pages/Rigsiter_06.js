@@ -15,9 +15,10 @@ const initialState = {
 export const Register_06 = () => {
   const [values, setValues] = useState(initialState);
 
-  const { showAlert, displayAlert } = useAppContext();
+  const { showAlert, displayAlert ,registerUser } = useAppContext();
 
   const handleChange = (e) => {
+    console.log('e-target',e.target);
     setValues({ ...values, [e.target.name]: e.target.value });
   };
 
@@ -26,13 +27,26 @@ export const Register_06 = () => {
   }
 
   const onSubmit = (e) => {
-    e.preventDefault();
-    const { email, password } = values;
-    if (!email || !password) {
+    e.preventDefault();//非預設機制
+    const { name, email, password,isMember } = values;
+
+    if (!email || !password ||  !isMember && !name) {
       displayAlert();
       return;
     }
   };
+  const { name, email, password,isMember } = values;
+  const currentUser={ name, email, password };
+
+  if(!isMember){
+    registerUser({
+      currentUser,
+      endPoint:'register_06',
+      alertText:"User created!Redirect"
+    });
+  }else{
+
+  }
 
   return (
     <Wrapper>

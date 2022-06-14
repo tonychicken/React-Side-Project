@@ -5,7 +5,9 @@
   "main": "server_06.js",
   "type": "module",
   "scripts": {
-    "test": "node server_06.js",
+    "server": "nodemon server_06.js --ignore client_207410506",
+    "client": "npm start --prefix client_207410506",
+    "start": "concurrently --kill-others-on-fail \"npm run server\"  \"npm run client\" ",
     "dev": "nodemon server_06.js"
   },
   "repository": {
@@ -20,7 +22,10 @@
   },
   "homepage": "https://github.com/tonychicken/1102-wp2-mern-207410506#readme",
   "dependencies": {
+    "axios": "^0.27.2",
     "bcryptjs": "^2.4.3",
+    "concurrently": "^7.2.1",
+    "cors": "^2.8.5",
     "dotenv": "^16.0.1",
     "express": "^4.18.1",
     "express-async-errors": "^3.1.1",
