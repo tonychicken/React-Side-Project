@@ -15,7 +15,7 @@ const initialState = {
 export const Register_06 = () => {
   const [values, setValues] = useState(initialState);
 
-  const { showAlert, displayAlert ,registerUser } = useAppContext();
+  const { showAlert, displayAlert ,registerUser,LoginUser } = useAppContext();
 
   const handleChange = (e) => {
     // console.log('e-target',e.target);
@@ -34,15 +34,21 @@ export const Register_06 = () => {
       displayAlert();
       return;
     }
+    
   const currentUser={ name, email, password };
-
+  console.log('form data',currentUser);
   if(!isMember){
     registerUser({
       currentUser,
       endPoint:'register_06',
-      alertText:"User created!Redirect"
+      alertText:"User created!Redirect..."
     });
   }else{
+    LoginUser({
+      currentUser,
+      endPoint:'Login_06',
+      alertText:"Login Successful!Redirect... "
+    });
 
   }
 };
