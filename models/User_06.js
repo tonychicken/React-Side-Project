@@ -56,5 +56,5 @@ UserSchema_06.methods.comparePassword=async function(password) {
     const isMatch=await bcrypt.compare(password,this.password);//加密後產生的Token(單向且唯一)與登入的Token(單向且唯一)，比對正確後即可true。
     return isMatch;
 };
-
+``
 export default mongoose.model('User_06', UserSchema_06);
