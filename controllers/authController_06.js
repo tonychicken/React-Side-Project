@@ -38,7 +38,7 @@ const Login_06 = async (req, res) => {
     console.log('logined!',user);
 
     const isPasswordCorrect = await user.comparePassword(password);
-    if(!isPasswordCorrect){//若密碼比對錯誤，則error報錯
+    if(!isPasswordCorrect){//若密碼比對錯誤，則error報錯.
         throw new UnAuthenticatedError('Invalid Credentails');
     }
 
