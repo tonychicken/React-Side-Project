@@ -7,7 +7,7 @@ const register_06 = async (req, res,next) => { //next 往後端送
     const user = await User_06.create(req.body);//寫進mongodb
     const token=user.createJWT();//使用model的方法createJWT
     
-    res.status(StatusCodes.CREATED).json({ user,token });
+    res.status(StatusCodes.CREATED).json({ user,token,location:user.location });
 
     // try {
     //     console.log('body', req.body);

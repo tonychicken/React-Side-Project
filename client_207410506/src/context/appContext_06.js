@@ -1,14 +1,26 @@
 
 import React,{useReducer,useContext} from 'react';
 import reducer_06 from './reducer_06';
-import { DISPLAY_ALERT,CLEAR_ALERT } from './action_06';
 import axios from 'axios';
+import {
+    DISPLAY_ALERT,
+    CLEAR_ALERT,
+    REGISTER_USER_BEGIN,
+    REGISTER_USER_SUCCESS,
+    REGISTER_USER_ERROR,
+    LOGIN_USER_BEGIN,
+    LOGIN_USER_SUCCESS
+    }
+from "./action_06"
 
 const initialState = {
     isLoading:false,
     showAlert:false,
     alertText:'',
-    alertType:''
+    alertType:'',
+    user:'',
+    token:'',
+    location:'',
   };
 
 
@@ -28,14 +40,37 @@ const AppProvider_06=({children})=>{
             dispatch({type: CLEAR_ALERT});  
         },3000);
     }
+    const axiosRegister = async ({currentUser,endPoint,alertText}) => {
+        try {
+            const { data } = await axios.post(
+                `/api/v1/auth_06/${endPoint}`,
+                currentUser
+            );
+            console.log('register data', data)
+            return {data};
+        }
+        catch (err) {
+            console.log(err);
+        }
+    };
 
-    const registerUser = async({currentUser,endPoint,alertText}) => {
-        const { data } = await axios.post(`/api/v1/auth_06/${endPoint}`);
-        console.log("12345678",data);
+    const registerUser = async({currentUser,endPoint,
+        alertText}) => {
+            try {
+                const data = await axiosRegister({
+                    currentUser,
+                    endPoint,
+                    alertText,
+                });
+                console.log('register data', data)
+            }
+            catch (err) {
+                console.log(err);
+            }
     }
 
     return (
-        <AppContext_06.Provider value={{ ...state,displayAlert,clearAlert,registerUser} }>
+        <AppContext_06.Provider value={{ ...state,displayAlert,clearAlert,registerUser,axiosRegister} }>
             {children}
         </AppContext_06.Provider>
     )

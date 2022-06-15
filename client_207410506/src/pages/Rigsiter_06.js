@@ -18,7 +18,7 @@ export const Register_06 = () => {
   const { showAlert, displayAlert ,registerUser } = useAppContext();
 
   const handleChange = (e) => {
-    console.log('e-target',e.target);
+    // console.log('e-target',e.target);
     setValues({ ...values, [e.target.name]: e.target.value });
   };
 
@@ -30,12 +30,10 @@ export const Register_06 = () => {
     e.preventDefault();//非預設機制
     const { name, email, password,isMember } = values;
 
-    if (!email || !password ||  !isMember && !name) {
+    if (!email || !password ||  (!isMember && !name)) {
       displayAlert();
       return;
     }
-  };
-  const { name, email, password,isMember } = values;
   const currentUser={ name, email, password };
 
   if(!isMember){
@@ -47,7 +45,7 @@ export const Register_06 = () => {
   }else{
 
   }
-
+};
   return (
     <Wrapper>
       <form className="form" onSubmit={onSubmit}>

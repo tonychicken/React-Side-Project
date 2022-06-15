@@ -11,6 +11,7 @@
     "mongoose": "^6.2.11",
     "moongoose": "0.0.5",
     "normalize.css": "^8.0.1",
+    "proxy": "^1.0.2",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-router-dom": "^6.3.0",
@@ -42,10 +43,5 @@
       "last 1 safari version"
     ]
   },
-  "description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
-  "main": "server_06.js",
-  "devDependencies": {},
-  "keywords": [],
-  "author": "",
-  "license": "ISC"
+  "proxy": "http://localhost:5000"
 }
