@@ -7,8 +7,11 @@ REGISTER_USER_ERROR,
 LOGIN_USER_BEGIN,
 LOGIN_USER_SUCCESS,
 LOGIN_USER_ERROR,
+LOGOUT_USER,
+TOGGLE_SIDEBAR,
 }
 from "./action_06"
+import { initialState } from "./appContext_06"
 
 const reducer_06 = (state, action) => {
     if (action.type === DISPLAY_ALERT) {
@@ -79,6 +82,17 @@ const reducer_06 = (state, action) => {
             showAlert:true,
             alertText:action.payload.msg,
             alertType:'danger',
+        }
+    }
+    if (action.type === LOGOUT_USER) {
+        return {
+            ...initialState,
+        }
+    }
+    if (action.type === TOGGLE_SIDEBAR) {
+        return {
+            ...state,
+            showSidebar:!state.showSidebar,
         }
     }
 
