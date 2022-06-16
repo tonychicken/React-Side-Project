@@ -1,21 +1,22 @@
 import { useState, useEffect } from "react";
-import { Logo_06, FormRow_06 } from "../components";
+import { Logo_06, FormRow_06,Alert_06 } from "../components";
 import Wrapper from "../assets/wrappers/Register_06";
+
 import { useAppContext } from "../context/appContext_06";
-import Alert_06 from "../components/Alert_06";
+import { useNavigate } from 'react-router-dom';
 
 const initialState = {
   name: "",
   email: "",
   password: "",
   isMember: true,
-  showAlert: false,
 };
 
 export const Register_06 = () => {
   const [values, setValues] = useState(initialState);
+  const navigate = useNavigate();
 
-  const { showAlert, displayAlert ,registerUser,LoginUser } = useAppContext();
+  const { user, isLoading,showAlert, displayAlert ,registerUser,LoginUser } = useAppContext();
 
   const handleChange = (e) => {
     // console.log('e-target',e.target);
@@ -49,9 +50,16 @@ export const Register_06 = () => {
       endPoint:'Login_06',
       alertText:"Login Successful!Redirect... "
     });
-
   }
 };
+useEffect(() => {
+  if (user) {
+    setTimeout(() => {
+      navigate('/');
+    }, 3000);
+  }
+}, [user, navigate]);
+
   return (
     <Wrapper>
       <form className="form" onSubmit={onSubmit}>

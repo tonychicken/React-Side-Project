@@ -24,8 +24,6 @@ const initialState = {
     token:'',
     location:'',
   };
-
-
 const AppContext_06=React.createContext();
 
 const AppProvider_06=({children})=>{
@@ -41,8 +39,6 @@ const AppProvider_06=({children})=>{
             dispatch({type: CLEAR_ALERT});  
         },3000);
     }
-
-
     //Register
     const axiosRegister = async ({currentUser,endPoint,alertText}) => {
         try {
@@ -80,7 +76,8 @@ const AppProvider_06=({children})=>{
                 });
                 console.log(err);
             }
-    }
+            clearAlert();
+    };
 
     //Login
     const axiosLogin = async ({currentUser,endPoint,alertText}) => {
