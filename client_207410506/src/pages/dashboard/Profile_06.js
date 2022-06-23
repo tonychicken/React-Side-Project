@@ -6,7 +6,7 @@ import Wrapper from '../../assets/wrappers/DashboardFormPage_06';
 const Profile_06 = () => {
   const { user, showAlert, displayAlert, updateUser, isLoading } =
     useAppContext();
-
+ 
   const [name, setName] = useState(user?.name);
   const [email, setEmail] = useState(user?.email);
   const [lastName, setLastName] = useState(user?.lastName);
@@ -18,6 +18,8 @@ const Profile_06 = () => {
       displayAlert();
       return;
     }
+    const value={name,email,lastName,location}
+    console.log('asdfasd',value)
     updateUser({ name, email, lastName, location });
   };
 
@@ -27,12 +29,14 @@ const Profile_06 = () => {
         <h3>profile</h3>
         {showAlert && <Alert_06 />}
         <div className='form-center'>
+
           <FormRow_06
             type='text'
             name='name'
             value={name}
             handleChange={(e) => setName(e.target.value)}
           />
+
           <FormRow_06
             type='text'
             labelText='last name'
@@ -40,20 +44,23 @@ const Profile_06 = () => {
             value={lastName}
             handleChange={(e) => setLastName(e.target.value)}
           />
+
           <FormRow_06
             type='email'
             name='email'
             value={email}
             handleChange={(e) => setEmail(e.target.value)}
           />
+
           <FormRow_06
             type='text'
             name='location'
             value={location}
             handleChange={(e) => setLocation(e.target.value)}
           />
+          
           <button className='btn btn-block' type='submit' disabled={isLoading}>
-            {isLoading ? 'Please Wait...' : 'save changes'}
+            {isLoading ? 'Please Wait...' : 'save changes'} 
           </button>
         </div>
       </form>

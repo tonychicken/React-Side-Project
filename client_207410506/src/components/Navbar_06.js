@@ -7,7 +7,7 @@ import { useState } from 'react';
 
 const Navbar_06 = () => {
   const [showLogout, setShowLogout] = useState(false);
-  const { user, toggleSidebar, logoutUser } = useAppContext();
+  const { user, toggleSidebar, logoutUser} = useAppContext();
   return (
     <Wrapper>
       <div className='nav-center'>

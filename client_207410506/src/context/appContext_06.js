@@ -13,6 +13,9 @@ import {
     LOGIN_USER_ERROR,
     LOGOUT_USER,
     TOGGLE_SIDEBAR,
+    UPDATE_USER_BEGIN,
+    UPDATE_USER_SUCCESS,
+    UPDATE_USER_ERROR,
 }
     from "./action_06"
 
@@ -139,6 +142,46 @@ const AppProvider_06 = ({ children }) => {
         clearAlert();
     }
 
+    const axiosUPDATE = async ({ currentUser, endPoint, alertText }) => {
+        try {
+            const { data } = await axios.post(
+                `/api/v1/auth_06/profile`,
+                currentUser
+            );
+            return data;
+        }
+        catch (err) {
+            console.log(err);
+        }
+    };
+
+    const updateUser = async ({ currentUser, endPoint,
+        alertText }) => {
+        dispatch({ type: UPDATE_USER_BEGIN });
+        try {
+            const data = await axiosUPDATE({
+                currentUser,
+                endPoint,
+                alertText,
+            });
+            console.log('UPDATE data', data)
+            const { user, token, location } = data;
+            dispatch({
+                type: UPDATE_USER_SUCCESS,
+                payload: { user, token, location, alertText },
+            });
+            addUserToLocalStorage({ user, token, location });
+        }
+        catch (err) {
+            dispatch({
+                type: UPDATE_USER_ERROR,
+                payload: { msg: err.response.data.msg },
+            })
+            console.log(err);
+        }
+        clearAlert();
+    }
+
 
     const logoutUser = async () => {
         dispatch({ type: LOGOUT_USER });
@@ -158,6 +201,7 @@ const AppProvider_06 = ({ children }) => {
             LoginUser,
             logoutUser,
             toggleSidebar,
+            updateUser,
         }}>
             {children}
         </AppContext_06.Provider>

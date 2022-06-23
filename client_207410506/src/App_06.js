@@ -33,6 +33,8 @@ function App_06() {
           <Route path='add-job' element={<AddJob_06 />} />
           <Route path='all-jobs' element={<AllJobs_06 />} />
         </Route>
+
+        
         <Route path='/landing' element={<Landing_06 />} />
         <Route path='/register' element={<Register_06 />} />
         <Route path='/testcors' element={<TestFetchUseCors_06 />} />
